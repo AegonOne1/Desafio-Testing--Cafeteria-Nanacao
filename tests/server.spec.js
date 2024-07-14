@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app } from '../index.js';
+import app from '../index.js';
 
 describe("Operaciones CRUD de cafes", () => {
 
@@ -11,4 +11,14 @@ describe("Operaciones CRUD de cafes", () => {
         expect(resp.body.length).toBeGreaterThan(0);
     });
 
+    //Prueba para ruta POST
+    it('should add a new coffee and return a code 201', async() =>{
+        const newCafe = { id: 'Cafe Prueba', nombre: 'Espresso'};
+        const resp = await request(app)
+            .post('/cafes')
+            .send(newCafe)
+            .set('Accept', 'application/json');
+        expect(resp.status).toBe(201);
+        expect(resp.body).toEqual(expect.arrayContaining([expect.objectContaining(newCafe)]));
+    })
 });

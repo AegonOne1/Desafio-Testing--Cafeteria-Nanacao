@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.48% </span>
+                <span class="strong">40.81% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/49</span>
+                <span class='fraction'>20/49</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>1/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>3/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.9% </span>
+                <span class="strong">44.18% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/43</span>
+                <span class='fraction'>19/43</span>
             </div>
         
             
@@ -147,7 +147,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -158,13 +158,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -220,8 +220,8 @@ app.listen(3000, console.log("SERVER ON"))
 &nbsp;
 app.use(express.json())
 &nbsp;
-app.get("/cafes", <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >    res.status(200).send(cafes)</span>
+app.get("/cafes", (req, res) =&gt; {
+    res.status(200).send(cafes)
 })
 &nbsp;
 app.get("/cafes/:id", <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
@@ -231,14 +231,14 @@ app.get("/cafes/:id", <span class="fstat-no" title="function not covered" >(r</s
     else <span class="cstat-no" title="statement not covered" >res.status(404).send({ message: "No se encontró ningún cafe con ese id" })</span>
 })
 &nbsp;
-app.post("/cafes", <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-    const cafe = <span class="cstat-no" title="statement not covered" >req.body</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >cafe</span>
-    const existeUncafeConEseId = <span class="cstat-no" title="statement not covered" >cafes.some(<span class="fstat-no" title="function not covered" >c </span>=&gt; <span class="cstat-no" title="statement not covered" >c.id == id)</span></span>
-<span class="cstat-no" title="statement not covered" >    if (existeUncafeConEseId) <span class="cstat-no" title="statement not covered" >res.status(400).send({ message: "Ya existe un cafe con ese id" })</span></span>
+app.post("/cafes", (req, res) =&gt; {
+    const cafe = req.body
+    const { id } = cafe
+    const existeUncafeConEseId = cafes.some(c =&gt; c.id == id)
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (existeUncafeConEseId) <span class="cstat-no" title="statement not covered" >res.status(400).send({ message: "Ya existe un cafe con ese id" })</span>
     else {
-<span class="cstat-no" title="statement not covered" >        cafes.push(cafe)</span>
-<span class="cstat-no" title="statement not covered" >        res.status(201).send(cafes)</span>
+        cafes.push(cafe)
+        res.status(201).send(cafes)
     }
 })
 &nbsp;
@@ -292,7 +292,7 @@ module.exports = app
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-14T19:52:47.696Z
+                at 2024-07-14T20:04:09.210Z
             </div>
         <script src="../prettify.js"></script>
         <script>
