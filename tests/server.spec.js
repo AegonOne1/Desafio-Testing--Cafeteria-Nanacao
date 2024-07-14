@@ -21,7 +21,7 @@ describe("Operaciones CRUD de cafes", () => {
             .set('Accept', 'application/json');
         expect(resp.status).toBe(201);
         expect(resp.body).toEqual(expect.arrayContaining([expect.objectContaining(newCafe)]));
-    })
+    });
 
     //Prueba para ruta DELETE
     it('should return a 404 code when trying to delete a coffee with an id that does not exist', async() =>{
@@ -29,5 +29,15 @@ describe("Operaciones CRUD de cafes", () => {
             .delete('/cafes/9999')
             .set('Authorization', "jwt")
         expect(resp.status).toBe(404);
-    })
+    });
+
+    // Prueba para ruta PUT
+    it('should return a status code 400 if the parameter id is different from the payload id', async() =>{
+        const cafeActualizado = {id: 2, nombre: 'cafe Actualizado'};
+        const resp = await request(app)
+            .put('/cafes/1')
+            .send(cafeActualizado)
+            .set('Accept', 'application/json');
+        expect(resp.status).toBe(400);
+    });
 });
