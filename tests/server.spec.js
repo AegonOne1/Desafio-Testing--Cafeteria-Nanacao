@@ -1,5 +1,5 @@
-const request = require("supertest");
-const server = require("../index");
+import request from 'supertest';
+import { app } from '../index.js';
 
 describe("Operaciones CRUD de cafes", () => {
 
